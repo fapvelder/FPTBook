@@ -1,0 +1,42 @@
+﻿@model FPTBook.Models.Book
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit book</h2>
+<form action="/Book/Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>ID</label>
+        <input type="hidden" class="form-control"    id="ID" name="ID" />
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" value="@Model.Name" id="Name" name="Name" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control" value="@Model.Price"id="Price" name="Price" />
+    </div>
+    <div class="form-group">
+        <label>Supplier</label>
+        <input type="text" class="form-control" value="@Model.Supplier" id="Supplier" name="Supplier" />
+    </div>
+    <div class="form-group">
+        <label>Publisher</label>
+        <input type="text" class="form-control" value="@Model.Publisher" id="Publisher" name="Publisher" />
+    </div>
+    <div class="form-group">
+        <label>Author</label>
+        <input type="text" class="form-control" value="@Model.Author" id="Author" name="Author" />
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <input type="text" class="form-control" value="@Model.Category" id="Category" name="Category" />
+    </div>
+    <div class="form-group">
+        <input type="file" id="UploadImage" name="UploadImage" accept="image/*" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

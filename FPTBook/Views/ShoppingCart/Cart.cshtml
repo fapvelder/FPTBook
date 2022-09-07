@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FPTBook.Controllers
+<h2 align="center">Cart Details</h2>
+<style>
+    .table .product-thumbnail a img, table .product-thumbnail a img {
+        width: 80px;
+    }
+
+    img {
+        border: 0;
+        vertical-align: top;
+        max-width: 100%;
+        height: auto;
+    }
+
+    img {
+        vertical-align: middle;
+        border-style: none;
+    }
+
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+
+
+
+    a {
+        color: #000;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+        background-color: transparent;
+    }
+
+    user agent stylesheet
+
+
+    .table.shop_table > tbody > tr > td, .table.shop_table > tfoot > tr > td, .table.shop_table > thead > tr > td, table.shop_table > tbody > tr > td, table.shop_table > tfoot > tr > td, table.shop_table > thead > tr > td {
+        line-height: 1.7;
+        vertical-align: top;
+        border: 1px solid #e6e6e6;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    user agent stylesheet
+    table {
+        border-collapse: separate;
+        text-indent: initial;
+        border-spacing: 2px;
+    }
+
+    body {
+        margin: 0;
+        font-family: Lato,sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.7;
+        color: #767a79;
+        text-align: left;
+        background-color: transparent;
+    }
+
+    body {
+        --extendify--spacing--large: var( --wp--custom--spacing--large,clamp(2em,8vw,8em) );
+        --wp--preset--font-size--ext-small: 1rem;
+        --wp--preset--font-size--ext-medium: 1.125rem;
+        --wp--preset--font-size--ext-large: clamp(1.65rem,3.5vw,2.15rem);
+        --wp--preset--font-size--ext-x-large: clamp(3rem,6vw,4.75rem);
+        --wp--preset--font-size--ext-xx-large: clamp(3.25rem,7.5vw,5.75rem);
+        --wp--preset--color--black: #000;
+        --wp--preset--color--white: #fff;
+    }
+
+    :root {
+        --page-title-display: block;
+    }
+
+    html {
+        font-size: 14px;
+    }
+
+    html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -ms-overflow-style: scrollbar;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+
+    ::selection {
+        color: #fff;
+        background: #064532;
+    }
+    table {
+        width:100%;
+    }
+</style>
+
+@{
+    decimal s = 0;
+}
+
+
+<table class="shop_table shop_table_responsive cart" cellspacing="0">
+    <thead>
+        <tr>
+            <th class="product-thumbnail">Product</th>
+            <th class="product-price">Price</th>
+            <th class="product-quantity">Quantity</th>
+            <th class="product-subtotal">Subtotal</th>
+            <th class="product-remove">Action</th>
+        </tr>
+    </thead>
+    @foreach (Item item in (List<Item>)Session["cart"])
+    {
+        s = s + item.P.Price.Value * item.Quantity;
+        <tbody>
+            <tr class="woocommerce-cart-form__cart-item cart_item">
+
+                <td class="product-thumbnail">
+                    <a href="/Home/Product/@item.P.ID"><img width="480" height="693" src="~/Upload/Book/@item.P.Image" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>								<div class="product-name">
+                        <a href="/Home/Product/@item.P.ID">@item.P.Name</a>
+                    </div>
+                </td>
+
+                <td class="product-price" data-title="Price">
+                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span>@item.P.Price VND</bdi></span>
+                </td>
+
+
+                <td class="product-subtotal" data-title="Subtotal">
+                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span>@item.Quantity</bdi></span>
+                </td>
+                <td>
+                    @(item.P.Price * item.Quantity) VND
+                </td>
+                <td class="product-remove">
+                    @Html.ActionLink("Delete", "Delete", "ShoppingCart", new { id = @item.P.ID }, null)
+                </td>
+
+            </tr>
+
+        </tbody>
+    }
+    <td align="right" colspan="4">Total: </td>
+    <td> @s VND</td>
+</table>
+
+
+
+<br />
+<button "btn btn-primary">
+    @Html.ActionLink("Continue Shopping", "Index", "Home")
+</button>

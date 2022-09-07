@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FPTBook.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Book</h2>
+<form action="/Book/Create">
+    <button a href="~/Book/Create" class="btn btn-primary">Add a book</button>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Supplier</td>
+            <td>Publisher</td>
+            <td>Author</td>
+            <td>Category</td>
+            <td>Image</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Supplier</td>
+            <td>@item.Publisher</td>
+            <td>@item.Author</td>
+            <td>@item.Category</td>
+            <td><img style="width:100px; height:100px;" src="~/Upload/Book/@item.Image"</td>
+            <td><a href="/Book/Edit/@item.ID">Edit</a></td>
+            <td><a href="/Book/Delete/@item.ID">Delete</a></td>
+
+        </tr>
+        }
+
+    </tbody>
+</table>

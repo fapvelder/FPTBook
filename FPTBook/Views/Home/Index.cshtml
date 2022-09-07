@@ -1,0 +1,62 @@
+﻿@model IEnumerable<FPTBook.Models.Book>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+
+    .card {
+        position: relative;
+        display: inline-block;
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+        margin-left: 15px;
+        color: black;
+    }
+
+    .price {
+        color: grey;
+        font-size: 22px;
+    }
+
+    .card button {
+        border: none;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        width: 100%;
+        font-size: 18px;
+    }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+
+    a {
+        text-decoration: none;
+    }
+
+        a h1 {
+            color: black;
+        }
+        h3 {
+            color:black;
+        }
+
+</style>
+<div class="product" style=" margin-top:10px;">
+    @foreach (var item in Model)
+    {
+        <div class="card " style="margin-left:50px;">
+            <a style="text-decoration: none;" href="/Home/Product/@item.ID">
+                <img src="~/Upload/Book/@item.Image" style="width:300px; height:300px;">
+                <h3 class="text-dark">@item.Name</h3>
+                <p class="price">@item.Price VNĐ</p>
+            </a>
+        </div>
+    }
+</div>
+
